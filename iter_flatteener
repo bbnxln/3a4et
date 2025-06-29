@@ -1,0 +1,30 @@
+class FlattenIterator:
+    def __init__(self, nested_list):
+        self.flat_list = []
+        stack = [(nested_list, 0)]  
+        while stack:
+            lst, i = stack[-1]
+            if i == len(lst):
+                stack.pop()
+                continue
+            item = lst[i]
+            stack[-1] = (lst, i + 1)
+            if isinstance(item, list):
+                stack.append((item, 0))
+            else:
+                self.flat_list.append(item)
+
+    def __iter__(self):
+        self.index = 0
+        return self
+
+    def __next__(self):
+        if self.index == len(self.flat_list):
+            raise StopIteration
+        item = self.flat_list[self.index]
+        self.index += 1
+        return item
+
+nested_list = [1, [2, [3, 4], 5], 6]
+for num in FlattenIterator(nested_list):
+    print(num)
