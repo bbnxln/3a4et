@@ -3,7 +3,6 @@ def make_abbreviation(phrase):
     abbreviation = ''.join(word[0] for word in words if word[0].isalpha())
     return abbreviation.upper()
 
-# Ввод от пользователя
 user_input = input("Введите фразу: ")
 result = make_abbreviation(user_input)
 print("Аббревиатура:", result)
