@@ -1,0 +1,13 @@
+number = input("Введите положительное целое число: ")
+
+digit_count = {}
+
+for digit in number:
+    if digit.isdigit():             
+        if digit in digit_count:
+            digit_count[digit] += 1
+        else:
+            digit_count[digit] = 1
+
+for digit in sorted(digit_count):
+    print(f"Цифра {digit} встречается {digit_count[digit]} раз(а)")
